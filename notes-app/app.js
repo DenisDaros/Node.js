@@ -1,14 +1,45 @@
 const chalk = require('chalk')
+const yargs = require('yargs')
 const getNotes = require('./notes.js')
 
-const command = process.argv[2]
+// node app.js --help para acessar os comandos implementados pela biblioteca "yargs"
 
-//terminal: node app.js add || remove
-//terminal: node app.js add --title="things to buy"
+// Create add command
+// node app.js add
+yargs.command({
+    command: 'add',
+    describe: 'Adiciona uma nota',
+    handler: function () {
+        console.log('Adicionando uma nota')
+    }
+})
 
-if (command === 'add') {
-    console.log('adicionando notas!')
-} else if(command === 'remove') {
-    console.log('removendo notas!')
-}
-console.log(process.argv)
+// Create remove command
+// node app.js remove
+yargs.command({
+    command: 'remove',
+    describe: 'Remove uma nota',
+    handler: function () {
+        console.log('Removendo uma nota')
+    }
+})
+
+// Create list command
+// node app.js list
+yargs.command({
+    command: 'list',
+    describe: 'lista as notas',
+    handler: function () {
+        console.log('Listando todas as notas')
+    }
+})
+
+// Create read command
+// node app.js read
+yargs.command({
+    command: 'read',
+    describe: 'lê as notas',
+    handler: function () {
+        console.log('Lendo a nota')
+    }
+})
