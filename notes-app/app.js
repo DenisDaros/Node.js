@@ -43,3 +43,5 @@ yargs.command({
         console.log('Lendo a nota')
     }
 })
+
+console.log(yargs.argv)
