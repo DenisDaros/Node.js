@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const yargs = require('yargs')
-const getNotes = require('./notes.js')
+const notes = require('./notes.js')
 
 // node app.js --help para acessar os comandos implementados pela biblioteca "yargs"
 
@@ -22,8 +22,7 @@ yargs.command({
         },
     },
     handler: function (argv) {
-        console.log('Title:', argv.title)
-        console.log('Note:', argv.body)
+        notes.addNotes(argv.title, argv.body)
     }
 })
 
