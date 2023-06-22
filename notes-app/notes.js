@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 const getNotes = function () {
     return 'Your notes...'
@@ -18,9 +19,9 @@ const addNotes = function (title, body) {
     // ao passar pela condição de não existir titulos duplicados, é adicionado um objeto nas notas já existentes com os valores recebidos por paramentro 
     saveNotes(notes)
     // saveNotes essa função transforma o parametro recebido em string para que possa ser salva no arquivo JSON 
-    console.log("Nova nota criada!")
+    console.log(chalk.green.inverse("Nova nota criada!"))
     } else {
-        console.log("Título já existente")
+        console.log(chalk.red.inverse("Título já existente"))
     }
 }
 
@@ -39,7 +40,20 @@ const loadNotes = function () {
     }
 }
 
+const removeNote = function (title) {
+    const notes = loadNotes()
+    const notesToKeep = notes.filter((i) => i.title !== title)
+    if(notes.length > notesToKeep.length) {
+        console.log(chalk.green.inverse('Nota removida!'))
+        saveNotes(notesToKeep)
+    } else {
+        console.log(chalk.red.inverse('Nota não encontrada!'))
+    }
+}
+
+
 module.exports = {
     getNotes,
-    addNotes
+    addNotes,
+    removeNote
 }

@@ -27,12 +27,19 @@ yargs.command({
 })
 
 // Create remove command
-// node app.js remove
+// node app.js remove --title="lista supermercado"
 yargs.command({
     command: 'remove',
     describe: 'Remove uma nota',
-    handler: function () {
-        console.log('Removendo uma nota')
+    builder: {
+        title: {
+            describe: 'Nota titulo',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function (argv) {
+        notes.removeNote(argv.title)
     }
 })
 
