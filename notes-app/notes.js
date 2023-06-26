@@ -4,10 +4,10 @@ const chalk = require('chalk')
 const addNotes = (title, body) => {
     const notes = loadNotes()
     // loadNotes essa função trás do arquivo já em formato de objeto o conteúdo do arquivo Json, caso não existir nada lá, será retornado apenas um array vazio
-    const duplicateTitle = notes.filter((i) => i.title === title)
+    const duplicateTitle = notes.find((i) => i.title === title)
     // duplicateTitle verifica se já existe algum titulo igual ao recebido por parametro da função
     
-    if(duplicateTitle.length === 0){
+    if(!duplicateTitle){
         notes.push({
             'title':title,
             'body':body 
@@ -56,9 +56,22 @@ const listNotes = () => {
     }
 }
 
+const readNotes = (title) => {
+    const notes = loadNotes()
+    const notesToRead = notes.find((i) => i.title === title)
+    if(notesToRead) {
+        console.log(chalk.green.inverse('Nota acessada!'))
+        console.log(notesToRead.title)
+        console.log(notesToRead.body)
+    } else {
+        console.log(chalk.red.inverse('Nota não encontrada!'))
+    }
+}
+
 
 module.exports = {
     addNotes,
     removeNote,
     listNotes,
+    readNotes
 }

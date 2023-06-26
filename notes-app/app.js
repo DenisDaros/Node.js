@@ -53,12 +53,19 @@ yargs.command({
 })
 
 // Create read command
-// node app.js read
+// node app.js read --title="lista supermercado"
 yargs.command({
     command: 'read',
     describe: 'lê as notas',
-    handler() {
-        console.log('Lendo a nota')
+    builder: {
+        title: {
+            describe: 'Nota titulo',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        notes.readNotes(argv.title)
     }
 })
 
