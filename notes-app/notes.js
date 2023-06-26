@@ -1,11 +1,7 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-const getNotes = function () {
-    return 'Your notes...'
-}
-
-const addNotes = function (title, body) {
+const addNotes = (title, body) => {
     const notes = loadNotes()
     // loadNotes essa função trás do arquivo já em formato de objeto o conteúdo do arquivo Json, caso não existir nada lá, será retornado apenas um array vazio
     const duplicateTitle = notes.filter((i) => i.title === title)
@@ -25,12 +21,12 @@ const addNotes = function (title, body) {
     }
 }
 
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
     const data = JSON.stringify(notes)
         fs.writeFileSync('notes.json', data)
 }
 
-const loadNotes = function () {
+const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json')
         const dataString = dataBuffer.toString()
@@ -40,7 +36,7 @@ const loadNotes = function () {
     }
 }
 
-const removeNote = function (title) {
+const removeNote = (title) => {
     const notes = loadNotes()
     const notesToKeep = notes.filter((i) => i.title !== title)
     if(notes.length > notesToKeep.length) {
@@ -53,7 +49,6 @@ const removeNote = function (title) {
 
 
 module.exports = {
-    getNotes,
     addNotes,
     removeNote
 }
