@@ -6,7 +6,10 @@ const addNotes = (title, body) => {
     // loadNotes essa função trás do arquivo já em formato de objeto o conteúdo do arquivo Json, caso não existir nada lá, será retornado apenas um array vazio
     const duplicateTitle = notes.find((i) => i.title === title)
     // duplicateTitle verifica se já existe algum titulo igual ao recebido por parametro da função
-    
+
+    debugger
+    //escrevendo "debugger" dentro do escopo onde eu pretendo debugar no caso addNotes, após isso usar a linha de comando node inspect app.js add --title="b" --body="b" como se eu quisesse adicionar ua nota, a partir dai ir até o browser e entrar por esse endereço chrome://inspect/#devices e a partir dai começar a debuggar clicando o play 
+
     if(!duplicateTitle){
         notes.push({
             'title':title,
